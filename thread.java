@@ -1,10 +1,10 @@
 import java.awt.*;
 import java.lang.*;
 
-public class thread implements Runnable{
-    Thread t;
+public class thread implements Runnable{ // main thread that the main program runs on
 
     int x = 0;
+
     @Override
     public void run() {
         try{
