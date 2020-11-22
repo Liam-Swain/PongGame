@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ball {
+public class ball { // ball class
     public final Scanner scnr = new Scanner(System.in);
     int x, y, direct;
     public double ballvY, ballvX = 0;
@@ -17,23 +17,25 @@ public class ball {
 
 
 
-    public ball(int x, int y){
+    public ball(int x, int y){ // ball constructor
         this.x = x;
         this.y = y;
         this.direct = direct;
     }
 
-    public void update(){
+    public void update(){ // updates the ball
         y += ballvY;
         x += ballvX;
 
     }
 
-    public void reset(){
+    public void reset(){ // this resets the ball in the middle when a player scores
         this.x = 750;
         this.y = 350;
     }
 
+
+    // the rest of these functions are setters and getters for various variables
     public void setplayer1Name(String player1Name){
         this.player1Name = player1Name;
     }
@@ -42,10 +44,7 @@ public class ball {
         return player1Name;
     }
 
-    public void setplayer2Name(String player2Name){
-
-        this.player2Name = player2Name;
-    }
+    public void setplayer2Name(String player2Name) {this.player2Name = player2Name; }
 
     public String getplayer2Name(){
         return player2Name;
