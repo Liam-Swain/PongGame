@@ -1,5 +1,5 @@
 
-public class paddle{
+public class paddle{ // paddle class
     public int x, y, direct;
     public  int width = 15;
     public  int height = 100;
@@ -8,13 +8,13 @@ public class paddle{
     public  final int NOT_MOVE = 2;
 
 
-    public paddle(int x, int y){
+    public paddle(int x, int y){ // paddle constructors, sets the x, y coordinate, and the direction
         this.x = x;
         this.y = y;
         this.direct = 2;
     }
 
-    public void update(){
+    public void update(){ // updates the paddles
 
         if(direct == UP){
             setY(y - 5);
@@ -25,10 +25,16 @@ public class paddle{
         }
     }
 
+
+
     public void getBigPowerUp(){
         setHeight(getHeight() * 2);
-        setHeight(getHeight() / 2);
 
+    }
+
+    // the rest of these function are all setters and getters for various variables
+    public void getSmallPower(){
+        setHeight(getHeight() / 2);
     }
 
     public void setDirect(int direct){
@@ -70,6 +76,7 @@ public class paddle{
     public int getHeight(){
         return height;
     }
+
 
 
 }
