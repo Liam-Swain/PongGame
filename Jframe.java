@@ -10,8 +10,7 @@ public class Jframe extends JFrame { // this creates a class that acts as a JFra
     public panel panel = new panel(width, height); // makes a panel
 
 
-
-    public Jframe() {
+    public Jframe() { // jframe constructor, adds key listener to panel
         super("PONG");
         panel.setBackground(Color.BLACK);
         add(panel);
@@ -26,7 +25,3 @@ public class Jframe extends JFrame { // this creates a class that acts as a JFra
 
         setVisible(true);
     }
-
-
-
-}
