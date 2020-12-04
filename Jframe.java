@@ -25,3 +25,4 @@ public class Jframe extends JFrame { // this creates a class that acts as a JFra
 
         setVisible(true);
     }
+}
