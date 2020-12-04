@@ -10,7 +10,7 @@ import java.io.File;
 
 public class panel extends JPanel implements KeyListener{ // this is the panel class
     int tempVar = 0; // this variable is used for power ups
-    boolean p2ExtraRect = false; // used for a power up
+    int tempVar2 = 0;
     int games = 1; // counts the games played
     File gameScores = new File("D:\\FileNames\\gameScores.txt"); // this makes a file in the specified location
 
@@ -55,13 +55,7 @@ public class panel extends JPanel implements KeyListener{ // this is the panel c
 
         g.drawString("Press n to start", 700, 100);
 
-        if(p2ExtraRect){ // if the player uses this power up
-            g.fillRect(800, 0, 15, 750);
-            if(b.getX() + 25 + b.ballvX >= 800){
-                b.ballvX = -b.ballvX;
-                b.ballvY = -b.ballvY;
-            }
-        }
+
 
 
 
@@ -196,9 +190,9 @@ public class panel extends JPanel implements KeyListener{ // this is the panel c
                 Thread t2 = new Thread(new Runnable() {
                     public void run() {
                         try {
-                            right.getBigPowerUp();
+                            left.getBigPowerUp();
                             Thread.sleep(5000);
-                            right.getSmallPower();
+                            left.getSmallPower();
                             Thread.sleep(10000);
                             tempVar = 0;
                         } catch (Exception e) {
@@ -208,11 +202,29 @@ public class panel extends JPanel implements KeyListener{ // this is the panel c
                 t2.start();
             }
 
+        }
 
+        if(e.getKeyCode() == KeyEvent.VK_CONTROL){
 
+            if(tempVar2 == 0) {
+                tempVar2 = 1;
+                Thread t2 = new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            right.getBigPowerUp();
+                            Thread.sleep(5000);
+                            right.getSmallPower();
+                            Thread.sleep(10000);
+                            tempVar2 = 0;
+                        } catch (Exception e) {
+                        }
+                    }});
 
+                t2.start();
+            }
 
         }
+
         //second power up, it has a 9 second cool down
         if(e.getKeyCode() == KeyEvent.VK_2){
             if(tempVar == 0){
@@ -223,6 +235,24 @@ public class panel extends JPanel implements KeyListener{ // this is the panel c
 
                     Thread.sleep(9000);
                     tempVar = 0;
+                }catch(Exception e){
+
+                }
+                }});
+                t2.start();
+            }
+        }
+
+
+        if(e.getKeyCode() == KeyEvent.VK_ENTER){ // press enter to activate
+            if(tempVar2 == 0){
+                tempVar2 = 1;
+                Thread t2 = new Thread(new Runnable(){public void run(){try{
+                    b.ballvX = -b.ballvX;
+                    b.ballvY = -b.ballvY;
+
+                    Thread.sleep(9000);
+                    tempVar2 = 0;
                 }catch(Exception e){
 
                 }
@@ -264,19 +294,84 @@ public class panel extends JPanel implements KeyListener{ // this is the panel c
             }
         }
 
+        if(e.getKeyCode() == KeyEvent.VK_SHIFT){
+            if(tempVar2 == 0){
+                tempVar2 = 1;
+                Thread t2 = new Thread(new Runnable(){public void run(){try{
+                    int dist;
+
+                    if(b.getX() > 750){
+                        dist = (b.getX() - 750);
+                        b.setX(750 - dist);
+                        b.ballvX = -b.ballvX;
+                        b.ballvY = -b.ballvY;
+                    }
+
+                    else if(b.getX() < 750){
+                        dist = (750 - b.getX());
+                        b.setX(750 + dist);
+                        b.ballvX = -b.ballvX;
+                        b.ballvY = -b.ballvY;
+                    }
+
+                    Thread.sleep(5000);
+                    tempVar2 = 0;
+
+                }catch(Exception e){
+
+                }
+                }});
+
+                t2.start();
+            }
+        }
 
         // this power up lasts for 5 sec, and has a 15 second cool down
-        if(e.getKeyCode() == KeyEvent.VK_4){
+        if(e.getKeyCode() == KeyEvent.VK_SLASH){
             if(tempVar == 0){
-
+                tempVar = 1;
                 Thread t2 = new Thread(new Runnable(){public void run(){try{
 
-                    p2ExtraRect = true;
-                    System.out.println(p2ExtraRect);
-                    Thread.sleep(5000);
-                    p2ExtraRect = false;
-                    Thread.sleep(15000);
+                    if(b.ballvX > 0){
+                        b.ballvX += 6;
+                    }
+
+                    if(b.ballvY > 0){
+                        b.ballvY += 6;
+                    }
+                    if(b.ballvY < 0){
+                        b.ballvY -= 6;
+                    }
+
+                    Thread.sleep(10000);
                     tempVar = 0;
+
+                }catch(Exception e){
+
+                }
+                }});
+                t2.start();
+
+            }
+        }
+
+        if(e.getKeyCode() == KeyEvent.VK_4){
+            if(tempVar2 == 0){
+                tempVar2 = 1;
+                Thread t2 = new Thread(new Runnable(){public void run(){try{
+                    if(b.ballvX < 0){
+                        b.ballvX -= 6;
+                    }
+
+                    if(b.ballvY > 0){
+                        b.ballvY += 6;
+                    }
+                    if(b.ballvY < 0){
+                        b.ballvY -= 6;
+                    }
+
+                    Thread.sleep(10000);
+                    tempVar2 = 0;
 
                 }catch(Exception e){
 
